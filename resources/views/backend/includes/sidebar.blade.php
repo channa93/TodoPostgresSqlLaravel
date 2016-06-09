@@ -56,6 +56,12 @@
                 </ul>
             </li>
 
+            <li >
+                <a href="/admin/todo/index"><span>Todo</span></a>
+            </li>
+
+            
+
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

@@ -6,6 +6,7 @@ Route::group(['middleware' => 'web'], function() {
      */
     Route::group(['namespace' => 'Language'], function () {
         require (__DIR__ . '/Routes/Language/Language.php');
+
     });
 
     /**
@@ -34,4 +35,11 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ad
     require (__DIR__ . '/Routes/Backend/Dashboard.php');
     require (__DIR__ . '/Routes/Backend/Access.php');
     require (__DIR__ . '/Routes/Backend/LogViewer.php');
+
+    require (__DIR__ . '/Routes/Backend/Todo.php');
 });
+
+// Route::group(['as' => 'todo'], function() {
+//     Route::get('index', 'TodoController@index');
+// });
+
