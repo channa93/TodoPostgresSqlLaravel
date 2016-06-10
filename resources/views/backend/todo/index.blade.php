@@ -10,16 +10,55 @@
 
 @section('before-scripts-end')
     <script type="text/javascript">
-        function deleteTodo(id){
-            console.log(id);
-            debugger;
+        function deleteTodo(task){
+            alert('delete task: '+task.title);
+            console.log(task);
+            // debugger;
+            // $.ajax({
+            //     url: "delete",
+            //     method:"GET",
+            //     data:$id,
+            //     success: function(data){
+            //         alert(data);
+            //     }
+            // });
         }
 
         function saveTodo(task){
+            alert('save task: '+task.title);
             console.log(task);
             debugger;
         }
+        $(document).ready(function(){
+            //alert('jquery ready function');
+            $(".selection").change(function() {
+                if(this.checked) {
+                    console.log('checkbox');
+                    $(this).closest("tr>td").next().css('text-decoration', 'line-through');
+                    //$(this).closest("tr>td").next().addClass('done');
+                    // $(this).closest('tr>button.btn-save').attr("disabled", true);
+                                
+                }else{
+                    console.log('uncheck');
+                    $(this).closest("tr>td").next().css('text-decoration', 'none');
+                    //$(this).closest('tr>button.btn-delete').removeAttr("disabled");
+
+                }
+            });
+            
+        });
     </script>
+@endsection
+@section('before-style-end')
+    <style type="text/css">
+        .done{
+            text-decoration: line-through;
+
+        }
+        .undone{
+            text-decoration: none;
+        }
+    </style>
 @endsection
 
 
@@ -93,15 +132,14 @@
         </thead>
         <tbody>
         @foreach($todos as $key => $value)
-            <tr>
-                
-                <td><input type="checkbox" value=""></td>
-                <td>{{ $value->title }}</td>
+            <tr>         
+                <td><input type="checkbox" value="" name="selection" class="selection"></td>
+                <td ><span class="done"> {{ $value->title }} </span></td>
                 <td><p>{{ $value->description }}</p></td>  
                 <td>       
-                    <button class="btn btn-small btn-success" onclick="deleteTodo({{$value}})">
+                    <button class="btn btn-small btn-success btn-save" onclick="deleteTodo({{$value}})" >
                         <span class="glyphicon glyphicon-pencil"></span> Save</button>     
-                    <button class="btn btn-small btn-danger" onclick="deleteTodo({{$value->id}})">
+                    <button class="btn btn-small btn-danger btn-delete" onclick="deleteTodo({{$value}})" >
                         <span class="glyphicon glyphicon-remove"></span> Delete</button>
                 </td>
             </tr>

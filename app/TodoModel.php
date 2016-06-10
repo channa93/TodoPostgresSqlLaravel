@@ -15,4 +15,12 @@ class TodoModel extends Model
         return TodoModel::all();
     }
 
+    public static function deleteTodo($id){
+
+        // $todo = TodoModel::find($id);
+        // $todo->delete();
+
+        return TodoModel::find($id)->delete();
+    }
+
 }
